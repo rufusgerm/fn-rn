@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import pickle
-from nltk.corpus import stopwords
+from text_cleaning import clean_string
 from sklearn.ensemble import VotingClassifier
 
 
@@ -22,8 +22,8 @@ def results():
         text = form['text']
         full_text = title + ' ' + text
         # input above returned data into model.predict AND model.predict_proba
-        pred = combo_model.predict(full_text)
-        pred_proba = combo_model.predict_proba(full_text)*100
+        pred = combo_model.predict([full_text])
+        pred_proba = combo_model.predict_proba([full_text])*100
         pred_proba = max(pred_proba[0])
     return render_template('results.html', pred=pred, pred_proba=pred_proba)
 
@@ -35,13 +35,3 @@ def about():
 
 if __name__ == '__main__':
     app.run(host="localhost", debug=True)
-
-def clean_string(string):
-    """
-    1. Tokenize Words
-    2. Remove Punctuation
-    3. Remove Stop Words
-    """
-    nopunc_list = (''.join(char for char in string if char not in my_punc)).split()
-    del_stopwords = [word for word in nopunc_list if word.lower() not in stopwords.words('english')]
-    return del_stopwords
