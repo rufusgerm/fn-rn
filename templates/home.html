@@ -1,0 +1,17 @@
+{% extends 'layout.html' %} {% block body %}
+<div class="jumbotron text-center">
+  <h1>Welcome To The News Analyzer</h1>
+  <p class="lead">
+    This app is designed to use a machine learning model in order to determine
+    if a news item is true or fake news!
+  </p>
+</div>
+<form action="/results" method="POST">
+  <div><label>Title: </label><input type="text" name="title" /></div>
+  <div>
+    <label>Article: </label
+    ><textarea name="text" cols="30" rows="10"></textarea>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+{% endblock %}
