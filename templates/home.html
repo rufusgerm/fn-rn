@@ -1,11 +1,4 @@
 {% extends 'layout.html' %} {% block body %}
-<div class="jumbotron text-center bg-info">
-  <h1>Welcome To The News Analyzer</h1>
-  <p class="lead">
-    This app is designed to use a machine learning model in order to determine
-    if a news item is true or fake news!
-  </p>
-</div>
 <body>
   <div class="gallery">
     {% for image_name in image_names %}
@@ -35,24 +28,24 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
+            <h4 class="modal-title modal-text" id="myModalLabel">
+              Basic Modal
+            </h4>
           </div>
-          <div class="modal-body">
+          <div class="modal-body modal-text">
             <h3>Modal Body</h3>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
               Close
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <form action="/results" method="POST">
+              <input type="submit" value="Predict!" class="btn btn-secondary" />
+            </form>
           </div>
         </div>
       </div>
