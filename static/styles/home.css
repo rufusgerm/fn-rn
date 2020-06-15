@@ -1,0 +1,49 @@
+body {
+  background-color: lightblue;
+}
+.jumbotron {
+  height: 200px;
+}
+.gallery {
+  text-align: center;
+  margin: 10px 50px;
+  border: 1px solid black;
+}
+.gallery .img-wrap {
+  background-color: rgb(27, 82, 100);
+  transition: 0.666s;
+  border-radius: 5%;
+  box-shadow: 1.5px 1.5px 1.5px 1.5px rgba(0, 0, 0, 0.418);
+  margin: 10px;
+  padding: 15px;
+  width: 250px;
+  text-align: center;
+}
+
+.gallery .img-wrap img {
+  width: 100%;
+}
+
+.img-desc {
+  position: absolute;
+  top: 40%;
+  left: 28%;
+  visibility: hidden;
+  opacity: 0;
+
+  /* transition effect. not necessary */
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+.gallery .img-wrap:hover {
+  transform: scale(1.05);
+}
+
+.gallery .img-wrap:hover img {
+  filter: blur(1px);
+}
+
+.gallery .img-wrap:hover .img-desc {
+  visibility: visible;
+  opacity: 1;
+}

@@ -1,0 +1,11 @@
+{% extends 'layout.html' %} {% block body %}
+<div class="jumbotron text-center">
+  <h3>Result:</h3>
+  <div>{{ pred }}</div>
+
+  <h3>Probability:</h3>
+  <div>
+    {{ pred_proba }}.
+  </div>
+</div>
+{% endblock %}
