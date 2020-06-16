@@ -3,16 +3,11 @@
   <div class="gallery">
     {% for image_name in image_names %}
     <div class="img-wrap">
-      <a
-        href=""
-        data-toggle="modal"
-        data-target="{{'#basicModal' + loop.index0|string}}"
-      >
         <img
           src="{{ url_for('static', filename='images/example' + loop.index0|string + '.png') }}"
           alt="{{ 'image' + loop.index0|string }}"
         />
-        <button class="btn btn-secondary img-desc">
+        <button data-toggle="modal" data-target="{{'#basicModal' + loop.index0|string}}" class="btn btn-secondary img-desc">
           Read Article
         </button>
       </a>
