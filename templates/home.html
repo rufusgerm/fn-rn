@@ -26,33 +26,46 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header mx-auto">
-            <h4 class="modal-title modal-text" id="myModalLabel">
-              Basic Modal
-            </h4>
-          </div>
-          <div class="modal-body modal-text">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-              fugit illo accusamus distinctio ab debitis aperiam suscipit cum
-              nihil dolorem ipsam expedita impedit voluptatibus blanditiis,
-              iusto inventore laborum praesentium. Repellat?
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <form action="/results" method="POST">
+        <form action="/results" method="POST">
+          <input
+            type="hidden"
+            name="title"
+            value="{{articles[loop.index0]['title']}}"
+            readonly
+          />
+          <input
+            type="hidden"
+            name="text"
+            value="{{ articles[loop.index0]['text'] }}"
+            readonly
+          />
+          <div class="modal-content">
+            <div class="modal-header mx-auto form-group">
+              <h4 class="modal-title modal-text" id="myModalLabel" name="title">
+                {{ articles[loop.index0]['title'] }}
+              </h4>
+            </div>
+            <div class="modal-body modal-text form-group">
+              <p name="text">
+                {{ articles[loop.index0]['text'] }}
+              </p>
+              <hr />
+              <a href="{{ articles[loop.index0]['URL'] }}" target="_blank">
+                Original Article</a
+              >
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
               <input type="submit" value="Predict!" class="btn btn-secondary" />
-            </form>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
     {% endfor %}
