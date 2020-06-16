@@ -25,6 +25,7 @@ def results():
         full_text = title + ' ' + text
         # input above returned data into model.predict AND model.predict_proba
         pred = combo_model.predict([full_text])
+        pred = pred[0]
         pred_proba = combo_model.predict_proba([full_text])*100
         pred_proba = max(pred_proba[0])
     return render_template('results.html', pred=pred, pred_proba=pred_proba)

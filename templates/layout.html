@@ -13,7 +13,20 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     />
   </head>
-  <body style="background-color: rgb(58, 60, 61);">
+  <body
+    style="
+      background-image: linear-gradient(
+        to bottom left,
+        #344675,
+        #263148,
+        #344675
+      );
+      height: 100%;
+      margin: 0;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    "
+  >
     {% include 'includes/_navbar.html' %}
     <div class="container main">
       {% block body %} {% endblock %}

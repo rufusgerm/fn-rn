@@ -1,3 +1,7 @@
+.navbar {
+  box-shadow: inset 0px 2px 0px rgb(255, 65, 128);
+}
+
 .navbar-brand {
   font-size: x-large !important;
 }
@@ -26,7 +30,6 @@
   background-color: rgb(27, 82, 100);
   transition: 0.666s;
   border-radius: 25px;
-  /* box-shadow: 1.5px 1.5px 1.5px 1.5px rgba(0, 0, 0, 0.418); */
   margin: 10px;
   width: 250px;
   display: inline-block;
@@ -55,7 +58,7 @@
 }
 
 .gallery .img-wrap:hover img {
-  filter: blur(1px);
+  filter: blur(2px);
 }
 
 .gallery .img-wrap:hover .img-desc {
