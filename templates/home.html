@@ -9,7 +9,7 @@
         data-target="{{'#basicModal' + loop.index0|string}}"
       >
         <img
-          src="{{ url_for('static', filename='/images/' + image_name) }}"
+          src="{{ url_for('static', filename='images/example' + loop.index0|string + '.png') }}"
           alt="{{ 'image' + loop.index0|string }}"
         />
         <button class="btn btn-secondary img-desc">
