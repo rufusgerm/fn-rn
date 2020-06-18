@@ -39,9 +39,9 @@ def results():
     return render_template('results.html', pred=pred, pred_proba=pred_proba)
 
 
-@ app.route('/about')
+@ app.route('/dashboard')
 def about():
-    return render_template('about.html')
+    return render_template('dashboard.html')
 
 
 if __name__ == '__main__':
