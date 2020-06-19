@@ -35,7 +35,7 @@ def results():
         num_df = create_num_df((title, text))
 
         pred = num_model.predict(num_df)
-        pred = pred[0]
+        pred = "True" if pred[0] == 1 else "False"
         pred_proba = num_model.predict_proba(num_df)*100
         pred_proba = max(pred_proba[0])
     return render_template('results.html', pred=pred, pred_proba=pred_proba)
