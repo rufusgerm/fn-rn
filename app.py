@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request
 import pickle
-from text_cleaning import clean_string
+from data_frame_creation import create_num_df
 from sklearn.ensemble import VotingClassifier
 from os import listdir
 import json
+from sklearn.preprocessing import StandardScaler
 
 
 app = Flask(__name__)
@@ -26,15 +27,16 @@ def index():
 def results():
     form = request.form
     if request.method == 'POST':
-        with open('./data/model_combo.pkl', 'rb') as file:
-            combo_model = pickle.load(file)
+        with open('./data/lrfc_model.pkl', 'rb') as file:
+            num_model = pickle.load(file)
         title = form['title']
         text = form['text']
-        full_text = title + ' ' + text
 
-        pred = combo_model.predict([full_text])
+        num_df = create_num_df((title, text))
+
+        pred = num_model.predict(num_df)
         pred = pred[0]
-        pred_proba = combo_model.predict_proba([full_text])*100
+        pred_proba = num_model.predict_proba(num_df)*100
         pred_proba = max(pred_proba[0])
     return render_template('results.html', pred=pred, pred_proba=pred_proba)
 
