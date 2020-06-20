@@ -7,7 +7,7 @@ from dash import Dash
 import dash_bootstrap_components as dbc
 
 import dash_html_components as html
-from dash_comps import navbar, graph_tabs
+from templates.dashboard import navbar, graph_tabs
 
 server = Flask(__name__)
 
