@@ -1,16 +1,21 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import pickle
 from data_frame_creation import create_num_df
-from sklearn.ensemble import VotingClassifier
 from os import listdir
 import json
-from sklearn.preprocessing import StandardScaler
+from dash import Dash
+import dash_bootstrap_components as dbc
+
+import dash_html_components as html
+from dash_comps import navbar, graph_tabs
+
+server = Flask(__name__)
+
+app = Dash(__name__, server=server, url_base_pathname='/dashboard/',
+           external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 
-app = Flask(__name__)
-
-
-@app.route('/')
+@server.route('/')
 def index():
     image_names = listdir('./static/images')
 
@@ -23,7 +28,7 @@ def index():
     return render_template('home.html', image_names=image_names, articles=articles)
 
 
-@app.route('/results', methods=['POST'])
+@server.route('/results', methods=['POST'])
 def results():
     form = request.form
     if request.method == 'POST':
@@ -41,10 +46,11 @@ def results():
     return render_template('results.html', pred=pred, pred_proba=pred_proba)
 
 
-@ app.route('/dashboard')
-def about():
-    return render_template('dashboard.html')
+app.layout = html.Div(children=[
+    navbar,
+    graph_tabs
+])
 
 
 if __name__ == '__main__':
-    app.run(host="localhost", debug=True)
+    app.run_server(host="localhost", port=8080, debug=True)
