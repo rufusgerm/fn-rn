@@ -2,6 +2,7 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
+from graphs import *
 
 nav = dbc.Nav([
     html.A(dbc.NavItem(dbc.NavLink(
@@ -54,7 +55,7 @@ SELECTED_TAB_STYLE = {
 }
 
 graph_tabs = dcc.Tabs(id="tabs", value='tab-1', children=[
-    dcc.Tab(label='Correlation Matrices', value='tab-1',
+    dcc.Tab(label='Correlation Matrices', children=[fnum_corr_matrix], value='tab-1',
             style=TAB_STYLE, selected_style=SELECTED_TAB_STYLE),
     dcc.Tab(label='Scatter Plots', value='tab-2',
             style=TAB_STYLE, selected_style=SELECTED_TAB_STYLE),
