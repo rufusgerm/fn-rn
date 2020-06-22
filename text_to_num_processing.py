@@ -4,13 +4,11 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from collections import Counter
 from statistics import mean
 
-nltk.download('stopwords')
+nltk.download('stopwords', 'vader_lexicon')
 
 PARTIAL_PUNC = ['@', '!', '"', '#', '$', '%', '&', '\\',
                 '(', ')', '*', '+', ',', '-', '/', ':', ';', '<', '=', '>', '?', '@', '\[', '\]', '^', '_', '`', '{', '|', '}', '~']
 WHOLE_PUNC = ['.'] + PARTIAL_PUNC
-
-# nltk.download('vader_lexicon')
 
 
 # Get Unique Number Of Words From The Length Of A Counter Dict
