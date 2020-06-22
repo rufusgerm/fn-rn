@@ -1,7 +1,10 @@
+import nltk
 from nltk.corpus import stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from collections import Counter
 from statistics import mean
+
+nltk.download('stopwords')
 
 PARTIAL_PUNC = ['@', '!', '"', '#', '$', '%', '&', '\\',
                 '(', ')', '*', '+', ',', '-', '/', ':', ';', '<', '=', '>', '?', '@', '\[', '\]', '^', '_', '`', '{', '|', '}', '~']
