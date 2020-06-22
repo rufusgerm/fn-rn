@@ -4,6 +4,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 from graphs import *
 
+
 nav = dbc.Nav([
     html.A(dbc.NavItem(dbc.NavLink(
         "Home", active=False, style={'color': 'grey'})), href='/', style={'text-decoration': 'none'}),
@@ -54,14 +55,52 @@ SELECTED_TAB_STYLE = {
     'box-shadow': 'inset 0px 2px 0px rgb(255, 65, 128)'
 }
 
+GRAPH_STYLE = {
+    'width': '48%',
+    'textAlign': 'center',
+    'float': 'left'
+}
+
+
 graph_tabs = dcc.Tabs(id="tabs", value='tab-1', children=[
-    dcc.Tab(label='Correlation Matrices', children=[fnum_corr_matrix], value='tab-1',
-            style=TAB_STYLE, selected_style=SELECTED_TAB_STYLE),
-    dcc.Tab(label='Scatter Plots', value='tab-2',
-            style=TAB_STYLE, selected_style=SELECTED_TAB_STYLE),
+    # CORRELATION MATRIX TAB
+    dcc.Tab(label='Correlation Matrices', children=[
+        html.Div(children=[
+            html.Div(children=[
+                html.H2('Fake News Feature Correlations',
+                        style={'marginTop': '45px'}),
+                dcc.Graph(
+                    figure=fnum_corr_matrix
+                ),
+            ], style=GRAPH_STYLE),
+            html.Div(children=[
+                html.H2('Real News Feature Correlations',
+                        style={'marginTop': '45px'}),
+                dcc.Graph(
+                    figure=rnum_corr_matrix
+                ),
+            ], style=GRAPH_STYLE),
+        ], style={'marginLeft': '3%'})
+    ], value='tab-1', style=TAB_STYLE, selected_style=SELECTED_TAB_STYLE),
+    # SCATTERPLOT TAB
+    dcc.Tab(label='Scatter Plots', children=[
+        html.Div(children=[
+            html.Div(children=[
+                dcc.Graph(
+                    figure=overlayed_scatter
+                ),
+            ], style=GRAPH_STYLE),
+            html.Div(children=[
+                dcc.Graph(
+                    figure=overlayed_scatter
+                ),
+            ], style=GRAPH_STYLE)
+        ], style={'marginLeft': '3%'})
+    ], value='tab-2', style=TAB_STYLE, selected_style=SELECTED_TAB_STYLE),
+    # BAR GRAPHS TAB
     dcc.Tab(label='Bar Graphs', value='tab-3',
             style=TAB_STYLE, selected_style=SELECTED_TAB_STYLE)
-], )
+])
 
 
 # # add callback for toggling the collapse on small screens
