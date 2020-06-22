@@ -9,13 +9,15 @@ import dash_bootstrap_components as dbc
 import dash_html_components as html
 from templates.dashboard import navbar, graph_tabs
 
-server = Flask(__name__)
+flask_serv = Flask(__name__)
 
-app = Dash(__name__, server=server, url_base_pathname='/dashboard/',
+app = Dash(__name__, server=flask_serv, url_base_pathname='/dashboard/',
            external_stylesheets=[dbc.themes.BOOTSTRAP])
 
+server = app.server
 
-@server.route('/')
+
+@flask_serv.route('/')
 def index():
     image_names = listdir('./static/images')
 
@@ -28,7 +30,7 @@ def index():
     return render_template('home.html', image_names=image_names, articles=articles)
 
 
-@server.route('/results', methods=['POST'])
+@flask_serv.route('/results', methods=['POST'])
 def results():
     form = request.form
     if request.method == 'POST':
